@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="YogaAppDatabase3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblPoses">
+          <Key>
+            <PropertyRef Name="PoseName" />
+          </Key>
+          <Property Name="PoseName" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Level" Type="nvarchar" MaxLength="20" />
+          <Property Name="BodyRegion" Type="nvarchar" MaxLength="20" />
+          <Property Name="Modification" Type="ntext" />
+          <Property Name="BreakDown" Type="nvarchar" MaxLength="450" />
+          <Property Name="ImageName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tblUserLogs">
+          <Key>
+            <PropertyRef Name="TimeStamp" />
+          </Key>
+          <Property Name="TimeStamp" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="25" />
+          <Property Name="LogLvl" Type="nvarchar" MaxLength="20" />
+          <Property Name="LogAreaStretched" Type="nvarchar" MaxLength="20" />
+          <Property Name="LogTime" Type="time" Precision="7" />
+          <Property Name="LogNumStretch" Type="nvarchar" MaxLength="10" />
+          <Property Name="LogTimePer" Type="time" Precision="7" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUserSettings">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Pregnant" Type="bit" />
+          <Property Name="Injured" Type="bit" />
+          <Property Name="DifficultyLvl" Type="nvarchar" MaxLength="20" />
+          <Property Name="Injury" Type="nvarchar" MaxLength="20" />
+          <Property Name="Meditation" Type="bit" />
+        </EntityType>
+        <Association Name="FK_tblUserLogs_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+          <End Role="tblUserLogs" Type="Self.tblUserLogs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserLogs">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserSettings_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblUserSettings" Type="Self.tblUserSettings" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserSettings">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YogaAppDatabase3ModelStoreContainer">
+          <EntitySet Name="tblPoses" EntityType="Self.tblPoses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserLogs" EntityType="Self.tblUserLogs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUserSettings" EntityType="Self.tblUserSettings" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tblUserLogs_tblUsers" Association="Self.FK_tblUserLogs_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUserLogs" EntitySet="tblUserLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserSettings_tblUsers" Association="Self.FK_tblUserSettings_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUserSettings" EntitySet="tblUserSettings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="YogaAppDatabase3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblPos">
+          <Key>
+            <PropertyRef Name="PoseName" />
+          </Key>
+          <Property Name="PoseName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Level" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="BodyRegion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Modification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BreakDown" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tblUserLog">
+          <Key>
+            <PropertyRef Name="TimeStamp" />
+          </Key>
+          <Property Name="TimeStamp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+          <Property Name="LogLvl" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LogAreaStretched" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LogTime" Type="Time" Precision="7" />
+          <Property Name="LogNumStretch" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="LogTimePer" Type="Time" Precision="7" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblUserLogs_tblUsers" FromRole="tblUserLogs" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="tblUserLogs" Relationship="Self.FK_tblUserLogs_tblUsers" FromRole="tblUsers" ToRole="tblUserLogs" />
+          <NavigationProperty Name="tblUserSetting" Relationship="Self.FK_tblUserSettings_tblUsers" FromRole="tblUsers" ToRole="tblUserSettings" />
+        </EntityType>
+        <EntityType Name="tblUserSetting">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Pregnant" Type="Boolean" />
+          <Property Name="Injured" Type="Boolean" />
+          <Property Name="DifficultyLvl" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Injury" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Meditation" Type="Boolean" />
+          <NavigationProperty Name="tblUser" Relationship="Self.FK_tblUserSettings_tblUsers" FromRole="tblUserSettings" ToRole="tblUsers" />
+        </EntityType>
+        <Association Name="FK_tblUserLogs_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+          <End Role="tblUserLogs" Type="Self.tblUserLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserLogs">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblUserSettings_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1" />
+          <End Role="tblUserSettings" Type="Self.tblUserSetting" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="tblUserSettings">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="YogaAppDatabase3Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblPoses" EntityType="Self.tblPos" />
+          <EntitySet Name="tblUserLogs" EntityType="Self.tblUserLog" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+          <EntitySet Name="tblUserSettings" EntityType="Self.tblUserSetting" />
+          <AssociationSet Name="FK_tblUserLogs_tblUsers" Association="Self.FK_tblUserLogs_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUserLogs" EntitySet="tblUserLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblUserSettings_tblUsers" Association="Self.FK_tblUserSettings_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUserSettings" EntitySet="tblUserSettings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="YogaAppDatabase3ModelStoreContainer" CdmEntityContainer="YogaAppDatabase3Entities">
+          <EntitySetMapping Name="tblPoses">
+            <EntityTypeMapping TypeName="YogaAppDatabase3Model.tblPos">
+              <MappingFragment StoreEntitySet="tblPoses">
+                <ScalarProperty Name="PoseName" ColumnName="PoseName" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="BodyRegion" ColumnName="BodyRegion" />
+                <ScalarProperty Name="Modification" ColumnName="Modification" />
+                <ScalarProperty Name="BreakDown" ColumnName="BreakDown" />
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserLogs">
+            <EntityTypeMapping TypeName="YogaAppDatabase3Model.tblUserLog">
+              <MappingFragment StoreEntitySet="tblUserLogs">
+                <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="LogLvl" ColumnName="LogLvl" />
+                <ScalarProperty Name="LogAreaStretched" ColumnName="LogAreaStretched" />
+                <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+                <ScalarProperty Name="LogNumStretch" ColumnName="LogNumStretch" />
+                <ScalarProperty Name="LogTimePer" ColumnName="LogTimePer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="YogaAppDatabase3Model.tblUser">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUserSettings">
+            <EntityTypeMapping TypeName="YogaAppDatabase3Model.tblUserSetting">
+              <MappingFragment StoreEntitySet="tblUserSettings">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Pregnant" ColumnName="Pregnant" />
+                <ScalarProperty Name="Injured" ColumnName="Injured" />
+                <ScalarProperty Name="DifficultyLvl" ColumnName="DifficultyLvl" />
+                <ScalarProperty Name="Injury" ColumnName="Injury" />
+                <ScalarProperty Name="Meditation" ColumnName="Meditation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
