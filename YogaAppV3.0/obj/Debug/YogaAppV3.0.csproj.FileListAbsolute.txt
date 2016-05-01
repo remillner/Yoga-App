@@ -202,3 +202,22 @@ C:\Users\paler\Desktop\YogaApp\YogaAppV3.0\obj\Debug\YogaAppV3.0.pdb
 D:\Programming\YogaAppV3.0\bin\Debug\YogaAppV3.0.exe.config
 D:\Programming\YogaAppV3.0\obj\Debug\YogaAppV3.0.exe
 D:\Programming\YogaAppV3.0\obj\Debug\YogaAppV3.0.pdb
+D:\Programming\YogaAppV3.0\bin\Debug\YogaAppDatabase3.mdf
+D:\Programming\YogaAppV3.0\bin\Debug\YogaAppDatabase3_log.ldf
+D:\Programming\YogaAppV3.0\bin\Debug\YogaAppV3.0.exe.manifest
+D:\Programming\YogaAppV3.0\bin\Debug\YogaAppV3.0.application
+D:\Programming\YogaAppV3.0\bin\Debug\YogaAppV3.0.exe
+D:\Programming\YogaAppV3.0\bin\Debug\YogaAppV3.0.pdb
+D:\Programming\YogaAppV3.0\bin\Debug\EntityFramework.dll
+D:\Programming\YogaAppV3.0\bin\Debug\EntityFramework.SqlServer.dll
+D:\Programming\YogaAppV3.0\bin\Debug\EntityFramework.xml
+D:\Programming\YogaAppV3.0\bin\Debug\EntityFramework.SqlServer.xml
+D:\Programming\YogaAppV3.0\obj\Debug\YogaAppV3.0.csprojResolveAssemblyReference.cache
+D:\Programming\YogaAppV3.0\obj\Debug\YogaAppV3._0.Form1.resources
+D:\Programming\YogaAppV3.0\obj\Debug\YogaAppV3._0.Properties.Resources.resources
+D:\Programming\YogaAppV3.0\obj\Debug\YogaAppV3.0.csproj.GenerateResource.Cache
+D:\Programming\YogaAppV3.0\obj\Debug\YogaAppV3.0.exe.manifest
+D:\Programming\YogaAppV3.0\obj\Debug\YogaAppV3.0.application
+D:\Programming\Yoga App\YogaAppV3.0\bin\Debug\YogaAppV3.0.exe.config
+D:\Programming\Yoga App\YogaAppV3.0\obj\Debug\YogaAppV3.0.exe
+D:\Programming\Yoga App\YogaAppV3.0\obj\Debug\YogaAppV3.0.pdb
