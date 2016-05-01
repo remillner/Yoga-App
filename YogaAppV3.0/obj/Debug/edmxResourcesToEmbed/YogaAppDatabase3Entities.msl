@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="YogaAppDatabase3ModelStoreContainer" CdmEntityContainer="YogaAppDatabase3Entities">
+    <EntitySetMapping Name="tblPoses">
+      <EntityTypeMapping TypeName="YogaAppDatabase3Model.tblPos">
+        <MappingFragment StoreEntitySet="tblPoses">
+          <ScalarProperty Name="PoseName" ColumnName="PoseName" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="BodyRegion" ColumnName="BodyRegion" />
+          <ScalarProperty Name="Modification" ColumnName="Modification" />
+          <ScalarProperty Name="BreakDown" ColumnName="BreakDown" />
+          <ScalarProperty Name="ImageName" ColumnName="ImageName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserLogs">
+      <EntityTypeMapping TypeName="YogaAppDatabase3Model.tblUserLog">
+        <MappingFragment StoreEntitySet="tblUserLogs">
+          <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="LogLvl" ColumnName="LogLvl" />
+          <ScalarProperty Name="LogAreaStretched" ColumnName="LogAreaStretched" />
+          <ScalarProperty Name="LogTime" ColumnName="LogTime" />
+          <ScalarProperty Name="LogNumStretch" ColumnName="LogNumStretch" />
+          <ScalarProperty Name="LogTimePer" ColumnName="LogTimePer" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="YogaAppDatabase3Model.tblUser">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUserSettings">
+      <EntityTypeMapping TypeName="YogaAppDatabase3Model.tblUserSetting">
+        <MappingFragment StoreEntitySet="tblUserSettings">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Pregnant" ColumnName="Pregnant" />
+          <ScalarProperty Name="Injured" ColumnName="Injured" />
+          <ScalarProperty Name="DifficultyLvl" ColumnName="DifficultyLvl" />
+          <ScalarProperty Name="Injury" ColumnName="Injury" />
+          <ScalarProperty Name="Meditation" ColumnName="Meditation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

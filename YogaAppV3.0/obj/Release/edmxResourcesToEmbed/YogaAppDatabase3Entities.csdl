@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YogaAppDatabase3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblPos">
+    <Key>
+      <PropertyRef Name="PoseName" />
+    </Key>
+    <Property Name="PoseName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Level" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="BodyRegion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Modification" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="BreakDown" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblUserLog">
+    <Key>
+      <PropertyRef Name="TimeStamp" />
+    </Key>
+    <Property Name="TimeStamp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" />
+    <Property Name="LogLvl" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LogAreaStretched" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="LogTime" Type="Time" Precision="7" />
+    <Property Name="LogNumStretch" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LogTimePer" Type="Time" Precision="7" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblUserLogs_tblUsers" FromRole="tblUserLogs" ToRole="tblUsers" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="tblUserLogs" Relationship="Self.FK_tblUserLogs_tblUsers" FromRole="tblUsers" ToRole="tblUserLogs" />
+    <NavigationProperty Name="tblUserSetting" Relationship="Self.FK_tblUserSettings_tblUsers" FromRole="tblUsers" ToRole="tblUserSettings" />
+  </EntityType>
+  <EntityType Name="tblUserSetting">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Pregnant" Type="Boolean" />
+    <Property Name="Injured" Type="Boolean" />
+    <Property Name="DifficultyLvl" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Injury" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Meditation" Type="Boolean" />
+    <NavigationProperty Name="tblUser" Relationship="Self.FK_tblUserSettings_tblUsers" FromRole="tblUserSettings" ToRole="tblUsers" />
+  </EntityType>
+  <Association Name="FK_tblUserLogs_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="0..1" />
+    <End Role="tblUserLogs" Type="Self.tblUserLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblUserLogs">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserSettings_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUser" Multiplicity="1" />
+    <End Role="tblUserSettings" Type="Self.tblUserSetting" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblUserSettings">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="YogaAppDatabase3Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblPoses" EntityType="Self.tblPos" />
+    <EntitySet Name="tblUserLogs" EntityType="Self.tblUserLog" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
+    <EntitySet Name="tblUserSettings" EntityType="Self.tblUserSetting" />
+    <AssociationSet Name="FK_tblUserLogs_tblUsers" Association="Self.FK_tblUserLogs_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblUserLogs" EntitySet="tblUserLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserSettings_tblUsers" Association="Self.FK_tblUserSettings_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblUserSettings" EntitySet="tblUserSettings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

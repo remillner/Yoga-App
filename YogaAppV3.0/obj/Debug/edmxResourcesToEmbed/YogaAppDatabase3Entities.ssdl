@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="YogaAppDatabase3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblPoses">
+    <Key>
+      <PropertyRef Name="PoseName" />
+    </Key>
+    <Property Name="PoseName" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Level" Type="nvarchar" MaxLength="20" />
+    <Property Name="BodyRegion" Type="nvarchar" MaxLength="20" />
+    <Property Name="Modification" Type="ntext" />
+    <Property Name="BreakDown" Type="nvarchar" MaxLength="450" />
+    <Property Name="ImageName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tblUserLogs">
+    <Key>
+      <PropertyRef Name="TimeStamp" />
+    </Key>
+    <Property Name="TimeStamp" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="25" />
+    <Property Name="LogLvl" Type="nvarchar" MaxLength="20" />
+    <Property Name="LogAreaStretched" Type="nvarchar" MaxLength="20" />
+    <Property Name="LogTime" Type="time" Precision="7" />
+    <Property Name="LogNumStretch" Type="nvarchar" MaxLength="10" />
+    <Property Name="LogTimePer" Type="time" Precision="7" />
+  </EntityType>
+  <EntityType Name="tblUsers">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblUserSettings">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="nvarchar" MaxLength="25" Nullable="false" />
+    <Property Name="Pregnant" Type="bit" />
+    <Property Name="Injured" Type="bit" />
+    <Property Name="DifficultyLvl" Type="nvarchar" MaxLength="20" />
+    <Property Name="Injury" Type="nvarchar" MaxLength="20" />
+    <Property Name="Meditation" Type="bit" />
+  </EntityType>
+  <Association Name="FK_tblUserLogs_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="0..1" />
+    <End Role="tblUserLogs" Type="Self.tblUserLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblUserLogs">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblUserSettings_tblUsers">
+    <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+    <End Role="tblUserSettings" Type="Self.tblUserSettings" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="tblUsers">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="tblUserSettings">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="YogaAppDatabase3ModelStoreContainer">
+    <EntitySet Name="tblPoses" EntityType="Self.tblPoses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserLogs" EntityType="Self.tblUserLogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserSettings" EntityType="Self.tblUserSettings" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tblUserLogs_tblUsers" Association="Self.FK_tblUserLogs_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblUserLogs" EntitySet="tblUserLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblUserSettings_tblUsers" Association="Self.FK_tblUserSettings_tblUsers">
+      <End Role="tblUsers" EntitySet="tblUsers" />
+      <End Role="tblUserSettings" EntitySet="tblUserSettings" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
